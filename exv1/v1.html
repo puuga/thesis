@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> New Document </title>
+  <meta name="Generator" content="EditPlus">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <style>
+	
+	#head
+	{
+		background-color:#aabbdd;
+		text-align:center;
+		color:red;
+		padding:10px;
+		border:5px solid gray;
+		margin:10px;
+	}
+
+	#body
+	{
+		background-color:#aabbdd;
+		text-align:center;
+		color:red;
+		padding:10px;
+		border:5px solid gray;
+		margin:10px;
+	}
+
+	#foot
+	{
+		background-color:#aabbdd;
+		text-align:center;
+		color:red;
+		padding:10px;
+		border:5px solid gray;
+		margin:10px;
+	}
+
+	#main-nev
+	{
+		background-color:#aabbdd;
+		text-align:center;
+		color:red;
+		padding:10px;
+		border:5px solid gray;
+		margin:10px;
+	}
+
+	#left-nev
+	{
+		background-color:#aabbdd;
+		float:left;
+		width:110px;
+		border:5px solid gray;
+		height:190px;
+		margin:5px;
+	}
+
+	#right-nev
+	{
+		background-color:#aabbdd;
+		float:right;
+		width:110px;
+		border:5px solid gray;
+		height:190px;
+		margin:5px;
+	}
+  </style>
+	<script>
+		function loadXMLDoc(dname) {
+			if (window.XMLHttpRequest) {
+				xhttp=new XMLHttpRequest();
+			} else {
+				xhttp=new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			xhttp.open("GET",dname,false);
+			xhttp.send();
+			return xhttp.responseXML;
+		}
+	</script>
+	<script>
+		xmlDoc=loadXMLDoc("testxml.xml");
+
+		var currentPage = 1;
+
+		function loadPage(pageNumber) {
+			//alert("test");
+			var string = xmlDoc.getElementsByTagName("content")[pageNumber-1].childNodes[0].nodeValue;
+			var bodyDiv=document.getElementById("body");
+			var node=document.createTextNode(string);
+			bodyDiv.appendChild(node);
+		}
+
+		function nextPage() {
+			currentPage += 1;
+			//alert("test");
+			loadPage(currentPage);
+		}
+	</script>
+
+ </head>
+
+ <body onload="loadPage(1)">
+  <div id="head">head</div>
+  <div id="left-nev">left</div>
+  <div id="right-nev" onclick="nextPage()">next</div>
+  <div id="body">body</div>
+  <div id="foot">foot</div>
+  <div id="main-nev">nev</div>
+ </body>
+</html>

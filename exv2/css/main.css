@@ -1,0 +1,10 @@
+.aligncenter {
+  width:500px;
+  margin:10px auto;
+  text-align:center;
+  border:1px;
+}
+
+.bigfont {
+  font-size:150%
+}

@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<title> New Document </title>
+		<meta name="Generator" content="EditPlus">
+		<meta name="Author" content="">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<script src="script/jquery-2.0.2.js"></script>
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+		<script src="jquery.ui.touch-punch.min.js"></script>
+		<!--<link rel="stylesheet" href="/resources/demos/style.css" />-->
+		
+		<style>
+			.draggable1 { width: 150px; height: 150px; padding: 0.5em; float:left;}
+		</style>
+ 
+		<script type="text/javascript">
+			$.fn.draggable2 = function() {
+				var offset = null;
+				var start = function(e) {
+					var orig = e.originalEvent;
+					var pos = $(this).position();
+					offset = {  
+						x: orig.changedTouches[0].pageX - pos.left,
+						y: orig.changedTouches[0].pageY - pos.top
+					};
+				};
+				var moveMe = function(e) {
+					e.preventDefault();
+					var orig = e.originalEvent;
+					$(this).css({
+						top: orig.changedTouches[0].pageY - offset.y,
+						left: orig.changedTouches[0].pageX - offset.x
+					});
+				};
+				this.bind("touchstart", start);
+				this.bind("touchmove", moveMe);
+			};  
+			$(".draggable4").draggable2(); 
+		
+			$(document).ready(function () {
+				getScreenSize();
+				getScreenSizeD2();
+			});
+			
+			$(window).resize(function() {
+				getScreenSize();
+				getScreenSizeD2();
+			});
+			
+			$(function() {
+				$( "#draggable1" ).draggable();
+				$( "#draggable2" ).draggable();
+				$( "#draggable3" ).draggable();
+				$( "#draggable4" ).draggable();
+			});
+			
+			function getPos() {
+				var el1 = $("#draggable1").position();
+				var el2 = $("#draggable2").position();
+				var el3 = $("#draggable3").position();
+				var el4 = $("#draggable4").position();
+				$("#pos1").html("left: " + el1.left + ", top: " + el1.top);
+				$("#pos2").html("left: " + el2.left + ", top: " + el2.top);
+				$("#pos3").html("left: " + el3.left + ", top: " + el3.top);
+				$("#pos4").html("left: " + el4.left + ", top: " + el4.top);
+			}
+			
+			function getScreenSize() {
+				var browserWidth = $(window).width();
+				var browserHeight = $(window).height();
+				$("#screen-size").html("browserWidth: " + browserWidth + ", browserHeight: " + browserHeight);
+			}
+			
+			function getScreenSizeD2() {
+				var browserWidth = $(window).width()/2;
+				var browserHeight = $(window).height()/2;
+				$("#screen-size-d2").html("browserWidth: " + browserWidth + ", browserHeight: " + browserHeight);
+			}
+		</script>
+	</head>
+
+	<body>
+		<table id="main_table" width="100%" height="100%" border="1">
+			<tr>
+				<td height="33%">
+					<div id="question">
+						<div id="draggable1" class="ui-widget-content draggable1" onmousemove="getPos()">
+							<p>1 Drag me around</p>
+						</div>
+						<div id="draggable2" class="ui-widget-content draggable1" onmousemove="getPos()">
+							<p>2 Drag me around</p>
+						</div>
+						<div id="draggable3" class="ui-widget-content draggable1" onmousemove="getPos()">
+							<p>3 Drag me around</p>
+						</div>
+						<div id="draggable4" class="ui-widget-content draggable1" onmousemove="getPos()">
+							<p>4 Drag me around</p>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td height="33%">
+					<div id="playground">i</div>
+				</td>
+			</tr>
+			<tr>
+				<td height="33%">
+					<div id="debug">
+						screen size = <span id="screen-size"></span><br/>
+						screen size d2= <span id="screen-size-d2"></span><br/>
+						pos1=<span id="pos1"></span><br/>
+						pos2=<span id="pos2"></span><br/>
+						pos3=<span id="pos3"></span><br/>
+						pos4=<span id="pos4"></span><br/>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

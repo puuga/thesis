@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <page id="01" number="1">
+    <head />
+    <body>
+      <content>content 1</content>
+    </body>
+    <foot />
+  </page>
+  <page id="02" number="2">
+    <head />
+    <body>
+      <content>content 2</content>
+    </body>
+    <foot />
+  </page>
+  <page id="03" number="3">
+    <head />
+    <body>
+      <content>content 3</content>
+    </body>
+    <foot />
+  </page>
+</doc>

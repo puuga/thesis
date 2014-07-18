@@ -1,0 +1,32 @@
+<html>
+	<head>
+		<!-- Load jQuery. -->
+		<script src="script/jquery-2.0.2.js"></script>
+		
+		<script language="javascript">
+			$("document").ready(function(){
+				$("#top").click(function(){
+					jQuery.ajax({
+						url: 'http://54.251.130.202/1st/thesis/json/test-return-json.php',
+						type: 'GET',
+						dataType: 'jsonp',
+						dataCharset: 'jsonp',
+						success: function (data){
+							var content = data.msg;
+							alert(content);
+							$('#layDiv').html('');
+							$('#layDiv').html(content);
+							$('#layDiv').css("display","block");
+						}
+					});
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div  style="background-color:#333333;height:20px;">
+			<a id="top" href="javascript:void(0);" >Show Message</a>
+			</div>
+			<div id="layDiv" style="display:none;height:30px;font-weight:bold;color:#ff3300;"></div>
+	</body>
+</html>

@@ -19,10 +19,10 @@ $pages[] = $page;
 
 // start page 1
 $page = array();
-$page["title"] = "Vehicle";
+$page["title"] = "What is this? ";
 $page["question_id"] = "1";
 $page["question_type"] = "1";
-$page["question"] = "<img src='pics/ship.jpg' width='100'>";
+$page["question"] = "<img src='pics/ship.jpg' width='300'>";
 
 $content = array();
 $option = array();
@@ -31,10 +31,10 @@ $option[] = "H";
 $option[] = "I";
 $option[] = "P";
 $hold = array();
-$hold[] = "<span class='hidden'>S</span>";
-$hold[] = "<span class='hidden'>H</span>";
-$hold[] = "<span class='hidden'>I</span>";
-$hold[] = "<span class='hidden'>P</span>";
+$hold[] = "1";
+$hold[] = "2";
+$hold[] = "3";
+$hold[] = "4";
 
 $content["option"] = $option;
 $content["hold"] = $hold;
@@ -46,10 +46,10 @@ $pages[] = $page;
 
 // start page 2
 $page = array();
-$page["title"] = "Vehicle";
+$page["title"] = "What is this? ";
 $page["question_id"] = "2";
 $page["question_type"] = "1";
-$page["question"] = "<img src='pics/bike.jpg' width='100'>";
+$page["question"] = "<img src='pics/bike.jpg' width='300'>";
 
 $content = array();
 $option = array();
@@ -58,10 +58,10 @@ $option[] = "I";
 $option[] = "K";
 $option[] = "E";
 $hold = array();
-$hold[] = "<span class='hidden'>B</span>";
-$hold[] = "<span class='hidden'>I</span>";
-$hold[] = "<span class='hidden'>K</span>";
-$hold[] = "<span class='hidden'>E</span>";
+$hold[] = "1";
+$hold[] = "2";
+$hold[] = "3";
+$hold[] = "4";
 
 $content["option"] = $option;
 $content["hold"] = $hold;
@@ -73,10 +73,10 @@ $pages[] = $page;
 
 // start page 3
 $page = array();
-$page["title"] = "Vehicle";
+$page["title"] = "What is this? ";
 $page["question_id"] = "3";
 $page["question_type"] = "1";
-$page["question"] = "<img src='pics/taxi.jpg' width='100'>";
+$page["question"] = "<img src='pics/taxi.jpg' width='300'>";
 
 $content = array();
 $option = array();
@@ -85,10 +85,10 @@ $option[] = "A";
 $option[] = "X";
 $option[] = "I";
 $hold = array();
-$hold[] = "<span class='hidden'>T</span>";
-$hold[] = "<span class='hidden'>A</span>";
-$hold[] = "<span class='hidden'>X</span>";
-$hold[] = "<span class='hidden'>I</span>";
+$hold[] = "1";
+$hold[] = "2";
+$hold[] = "3";
+$hold[] = "4";
 
 $content["option"] = $option;
 $content["hold"] = $hold;
@@ -100,10 +100,10 @@ $pages[] = $page;
 
 // start page 4
 $page = array();
-$page["title"] = "Vehicle";
+$page["title"] = "What is this? ";
 $page["question_id"] = "4";
 $page["question_type"] = "1";
-$page["question"] = "<img src='pics/bicycle.jpg' width='100'>";
+$page["question"] = "<img src='pics/bicycle.jpg' width='300'>";
 
 $content = array();
 $option = array();
@@ -115,13 +115,13 @@ $option[] = "C";
 $option[] = "L";
 $option[] = "E";
 $hold = array();
-$hold[] = "<span class='hidden'>B</span>";
-$hold[] = "<span class='hidden'>I</span>";
-$hold[] = "<span class='hidden'>C</span>";
-$hold[] = "<span class='hidden'>Y</span>";
-$hold[] = "<span class='hidden'>C</span>";
-$hold[] = "<span class='hidden'>L</span>";
-$hold[] = "<span class='hidden'>E</span>";
+$hold[] = "1";
+$hold[] = "2";
+$hold[] = "3";
+$hold[] = "4";
+$hold[] = "5";
+$hold[] = "6";
+$hold[] = "7";
 
 $content["option"] = $option;
 $content["hold"] = $hold;

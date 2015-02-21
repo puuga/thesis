@@ -136,8 +136,10 @@
 
         if ( jsonData.pages[page-1].question_type == "0" ) {
           makeInput(jsonData.pages[page-1]);
+          $("#nev-area").hide();
         }
         else if ( jsonData.pages[page-1].question_type == "1" ) {
+          $("#nev-area").show();
           makePep(jsonData.pages[page-1].content);
           makeDrop(jsonData.pages[page-1].content);
         }
@@ -153,11 +155,12 @@
       function setStudentName(obj) {
         studentName = obj.value;
         console.log("studentName: "+ studentName);
+        accessId = hashCode(studentName+accessId);
       }
 
       function makeInput(content) {
         var output="";
-        output += "<input type='text' onkeyup='setStudentName(this)' placeholder='"+content.placeholder+"' class='input-center1'>";
+        output += "<input type='text' onkeyup='setStudentName(this)' placeholder='"+content.placeholder+"' class='input-center1' autofocus>";
         output += "<button onclick='nextPage()' class='input-center2'>Ready to GO</button>";
         $("#inputZone").html(output);
       }
@@ -167,7 +170,12 @@
 
         // set data
         for (i=0; i<content.option.length; i++) {
-          output += "<div class='pep qz"+(i+1)+"' onmousedown='logOnMouseDown(this)' onmouseup='logOnMouseUp(this)'>drag me "+(i+1)+"</div>";
+          output += "<div class='pep qz"+(i+1)+"'";
+          output += " onmousedown='logOnMouseDown(this)' ";
+          output += " ontouchstart='logOnMouseDown(this)' ";
+          output += " onmouseup='logOnMouseUp(this)' ";
+          output += " ontouchend='logOnMouseUp(this)'>";
+          output += "drag me "+(i+1)+"</div>";
         }
         $("#pepZone").html(output);
 
@@ -179,9 +187,9 @@
           content.option[i]=="I" ||
           content.option[i]=="O" ||
           content.option[i]=="U" ) {
-            $(".pep.qz"+(i+1)).css({"top":"20%", "left":""+(i*margin+10)+"%", "border":"1", "padding":"10px", "background":"#4CAF50"});
+            $(".pep.qz"+(i+1)).css({"top":"40%", "left":""+(i*margin+10)+"%", "border":"1", "padding":"10px", "background":"#4CAF50"});
           } else {
-            $(".pep.qz"+(i+1)).css({"top":"20%", "left":""+(i*margin+10)+"%", "border":"1", "padding":"10px"});
+            $(".pep.qz"+(i+1)).css({"top":"40%", "left":""+(i*margin+10)+"%", "border":"1", "padding":"10px"});
           }
           $(".pep.qz"+(i+1)).html(content.option[i]);
         }
@@ -200,7 +208,7 @@
         // set css
         var margin = 100/(content.option.length+1);
         for (i=0; i<content.option.length; i++) {
-          $(".droppable.hz"+(i+1)).css({"bottom":"20%", "left":""+(i*margin+10)+"%", "border":"1"});
+          $(".droppable.hz"+(i+1)).css({"bottom":"10%", "left":""+(i*margin+10)+"%", "border":"1"});
           $(".droppable.hz"+(i+1)).html(content.hold[i]);
         }
       }
@@ -265,6 +273,17 @@
           });
       }
 
+      function hashCode(str) {
+        if (str.length == 0) return 0;
+        var hash = 0;
+        for (i = 0; i < str.length; i++) {
+            char = str.charCodeAt(i);
+            hash = ((hash<<5)-hash)+char;
+            hash = hash & hash; // Convert to 32bit integer
+        }
+        return hash;
+      }
+
     </script>
 
     <style type="text/css">
@@ -289,6 +308,8 @@
       .droppable{
         width: 120px;
         height: 120px;
+        font-size:40px;
+        text-align: center;
         position: absolute;
         border: 5px solid #ccc;
         z-index: -1;
@@ -322,6 +343,18 @@
         left: 25%;
       }
 
+      #nev-area {
+        width: 50%;
+        position: absolute;
+        top: 5%;
+        right: 5%;
+        text-align: right;
+      }
+
+      .big-button {
+        font-size:40px;
+      }
+
       .hidden {
         visibility: hidden;
       }
@@ -337,13 +370,20 @@
     <div id="inputZone"></div>
 
     <div>
-      <span id="nev-previousPage" onclick="previousPage()">&lt;&lt;&lt; previous page</span>
-      <span id="nev-page" style="background:#90CAF9"></span>
-      <span id="nev-nextPage" onclick="nextPage()">next page &gt;&gt;&gt; </span>
+      <span class="hidden" id="nev-previousPage" onclick="previousPage()">&lt;&lt;&lt; previous page</span>
+      <span class="hidden" id="nev-page" style="background:#90CAF9"></span>
+      <span class="hidden" id="nev-nextPage" onclick="nextPage()">next page &gt;&gt;&gt; </span>
     </div>
     <div>
-      <div id="title" class="aligncenter bigfont">..</div>
-      <div id="question" class="aligncenter bigfont">..</div>
+      <div class="aligncenter bigfont">
+        <span id="title"></span>
+      </div>
+      <div class="aligncenter bigfont">
+        <span id="question"></span>
+      </div>
+      <div id="nev-area">
+        <button class="big-button" onclick="nextPage()">Next Question</button>
+      </div>
     </div>
 
 

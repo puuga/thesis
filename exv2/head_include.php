@@ -6,6 +6,8 @@
 <link href="css/ripples.min.css" rel="stylesheet">
 <link href="css/material-wfont.min.css" rel="stylesheet">
 
+<link href="css/position_mod.css" rel="stylesheet">
+
 
 <script src="script/jquery-2.1.3.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
@@ -13,9 +15,3 @@
 <script src="js/material.min.js"></script>
 <!-- SnackbarJS, find it in /dist -->
 <script src="js/snackbar.min.js"></script>
-
-<script>
-    $(document).ready(function() {
-        $.material.init();
-    });
-</script>

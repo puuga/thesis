@@ -10,6 +10,12 @@
 
     <?php include "head_include.php"; ?>
 
+    <script>
+      $(document).ready(function() {
+        $.material.init();
+      });
+    </script>
+
   </head>
 
 
@@ -37,4 +43,4 @@
   </body>
 
 </html>
-<?php mysqli_close($con); ?>
+<?php $conn->close(); ?>

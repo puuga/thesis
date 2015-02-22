@@ -10,6 +10,12 @@
 
     <?php include "head_include.php"; ?>
 
+    <script>
+      $(document).ready(function() {
+        $.material.init();
+      });
+    </script>
+
   </head>
 
 
@@ -36,7 +42,12 @@
         </thead>
         <tbody>
           <?php
-          $sql="SELECT * FROM observe ORDER BY action_at,access_id,action_sequence_number";
+          $access_id = $_GET["access_id"];
+          if ($access_id=="") {
+            $sql="SELECT * FROM observe ORDER BY action_at,access_id,action_sequence_number";
+          } else {
+            $sql="SELECT * FROM observe WHERE access_id='$access_id' ORDER BY action_at,access_id,action_sequence_number";
+          }
           $result = $conn->query($sql);
           if ($result->num_rows > 0) {
             // output data of each row
@@ -44,7 +55,7 @@
               ?>
               <tr>
                 <td><?php echo $row["student_name"];?></td>
-                <td><?php echo $row["access_id"];?></td>
+                <td><a href="observe_view.php?access_id=<?php echo $row["access_id"];?>"><?php echo $row["access_id"];?></a></td>
                 <td><?php echo $row["question_id"];?></td>
                 <td><?php echo $row["action_sequence_number"];?></td>
                 <td><?php echo $row["action"];?></td>
@@ -66,6 +77,10 @@
         </tbody>
       </table>
 
+    </div>
+
+    <div class="floating-action-button-position">
+      <a href="observe_view.php" class="btn btn-fab btn-raised btn-material-red mdi-av-replay"></a>
     </div>
 
   </body>

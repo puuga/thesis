@@ -19,7 +19,13 @@
       var studentName = "";
       var sequenceNumber = 0;
       var accessId = (new Date()).valueOf().toString();
+      var documentHeight = 0;
+      var documentWidth = 0;
+
       $(document).ready(function() {
+
+        documentHeight = $(document).height();
+        documentWidth = $(document).width();
 
         $.material.init();
 
@@ -139,13 +145,40 @@
         if ( jsonData.pages[page-1].question_type == "0" ) {
           makeInput(jsonData.pages[page-1]);
           $("#nev-area").hide();
+          $(window).off("resize", moveWhenResize);
         }
         else if ( jsonData.pages[page-1].question_type == "1" ) {
           $("#nev-area").show();
           makePep(jsonData.pages[page-1].content);
           makeDrop(jsonData.pages[page-1].content);
+          $(window).resize( moveWhenResize );
         }
 
+      }
+
+      function moveWhenResize() {
+        // move pep to new position
+        // 1. detect how many pep
+        // 2. move pep one by one
+
+        var numberOfPep = jsonData.pages[currentPage-1].content.option.length
+        for (i=1; i<=numberOfPep; i++) {
+          // read old pos
+          var oldTop = $(".pep.qz"+i).position().top;
+          var oldLeft = $(".pep.qz"+i).position().left;
+
+          // cal new pos
+          var newTop = oldTop * $(document).height() / documentHeight;
+          var newLeft = oldLeft * $(document).width() / documentWidth;
+
+          // move to new pos
+          //$(".pep.qz"+i).position().top = newTop;
+          //$(".pep.qz"+i).position().left = oldLeft;
+          $(".pep.qz"+i).css({"top":newTop,"left":newLeft});
+        }
+
+        documentHeight = $(document).height();
+        documentWidth = $(document).width();
       }
 
       function clearView() {
@@ -313,12 +346,19 @@
       <div class="aligncenter bigfont">
         <span id="question"></span>
       </div>
+      <div class="aligncenter bigfont">
+        <span id="output"></span>
+      </div>
       <div id="nev-area">
         <button class="btn btn-fab btn-raised btn-material-red mdi-navigation-arrow-forward" onclick="nextPage()">
-          
+
         </button>
       </div>
     </div>
+
+    <script>
+
+    </script>
 
 
   </body>

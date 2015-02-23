@@ -149,8 +149,8 @@
         }
         else if ( jsonData.pages[page-1].question_type == "1" ) {
           $("#nev-area").show();
-          makePep(jsonData.pages[page-1].content);
           makeDrop(jsonData.pages[page-1].content);
+          makePep(jsonData.pages[page-1].content);
           $(window).resize( moveWhenResize );
         }
 
@@ -172,13 +172,22 @@
           var newLeft = oldLeft * $(document).width() / documentWidth;
 
           // move to new pos
-          //$(".pep.qz"+i).position().top = newTop;
-          //$(".pep.qz"+i).position().left = oldLeft;
           $(".pep.qz"+i).css({"top":newTop,"left":newLeft});
         }
 
         documentHeight = $(document).height();
         documentWidth = $(document).width();
+      }
+
+      function resetPep() {
+        var numberOfPep = jsonData.pages[currentPage-1].content.option.length;
+        var margin = 100/(numberOfPep+1);
+        for (i=0; i<numberOfPep; i++) {
+          $(".pep.qz"+(i+1)).css({"top":$(".droppable.hz"+(i+1)).position().top-120});
+          $(".pep.qz"+(i+1)).css({"left":(i*margin+10)+"%"});
+
+        }
+        track("reset","pep");
       }
 
       function clearView() {
@@ -224,10 +233,12 @@
           content.option[i]=="I" ||
           content.option[i]=="O" ||
           content.option[i]=="U" ) {
-            $(".pep.qz"+(i+1)).css({"bottom":"40%", "left":""+(i*margin+10)+"%", "border":"1", "padding":"10px", "background":"#4CAF50"});
-          } else {
-            $(".pep.qz"+(i+1)).css({"bottom":"40%", "left":""+(i*margin+10)+"%", "border":"1", "padding":"10px"});
+            $(".pep.qz"+(i+1)).css({"background":"#4CAF50"});
           }
+          $(".pep.qz"+(i+1)).css({"top":$(".droppable.hz"+(i+1)).position().top-120});
+          $(".pep.qz"+(i+1)).css({"left":""+(i*margin+10)+"%"});
+          $(".pep.qz"+(i+1)).css({"border":"1"});
+          $(".pep.qz"+(i+1)).css({"padding":"10px"});
           $(".pep.qz"+(i+1)).html(content.option[i]);
         }
 
@@ -245,7 +256,9 @@
         // set css
         var margin = 100/(content.option.length+1);
         for (i=0; i<content.option.length; i++) {
-          $(".droppable.hz"+(i+1)).css({"bottom":"10%", "left":""+(i*margin+10)+"%", "border":"1"});
+          $(".droppable.hz"+(i+1)).css({"bottom":"10%"});
+          $(".droppable.hz"+(i+1)).css({"left":""+(i*margin+10)+"%"});
+          $(".droppable.hz"+(i+1)).css({"border":"1"});
           $(".droppable.hz"+(i+1)).html(content.hold[i]);
         }
       }
@@ -350,9 +363,9 @@
         <span id="output"></span>
       </div>
       <div id="nev-area">
-        <button class="btn btn-fab btn-raised btn-material-red mdi-navigation-arrow-forward" onclick="nextPage()">
-
-        </button>
+        <button class="btn btn-fab btn-raised btn-material-red mdi-av-replay" onclick="resetPep()"></button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button class="btn btn-fab btn-raised btn-material-red mdi-navigation-arrow-forward" onclick="nextPage()"></button>
       </div>
     </div>
 

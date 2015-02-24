@@ -28,6 +28,17 @@
         </div>
       </div>
 
+      <div class="row">
+        <div class="col-md-12">
+          <?php
+          $access_id = $_GET["access_id"];
+          if ( $access_id != "" ) {
+            echo "<a href='summary_score.php?access_id=$access_id' class='btn btn-material-light-blue btn-lg'>Score</a>";
+          }
+          ?>
+        </div>
+      </div>
+
       <table class="table table-striped table-hover ">
         <thead>
           <tr>
@@ -42,7 +53,6 @@
         </thead>
         <tbody>
           <?php
-          $access_id = $_GET["access_id"];
           if ($access_id=="") {
             $sql="SELECT * FROM observe ORDER BY action_at,access_id,action_sequence_number";
           } else {

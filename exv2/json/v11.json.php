@@ -37,6 +37,7 @@ $hold[] = "3";
 $hold[] = "4";
 
 $content["option"] = $option;
+$content["option_true"] = "SHIP";
 $content["hold"] = $hold;
 
 $page["content"] = $content;
@@ -64,6 +65,7 @@ $hold[] = "3";
 $hold[] = "4";
 
 $content["option"] = $option;
+$content["option_true"] = "BIKE";
 $content["hold"] = $hold;
 
 $page["content"] = $content;
@@ -91,6 +93,7 @@ $hold[] = "3";
 $hold[] = "4";
 
 $content["option"] = $option;
+$content["option_true"] = "TAXI";
 $content["hold"] = $hold;
 
 $page["content"] = $content;
@@ -124,6 +127,7 @@ $hold[] = "6";
 $hold[] = "7";
 
 $content["option"] = $option;
+$content["option_true"] = "BICYCLE";
 $content["hold"] = $hold;
 
 $page["content"] = $content;

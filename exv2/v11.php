@@ -268,8 +268,9 @@
           alert("Need student name to continue");
           return;
         }
-        if(currentPage == jsonData.pages.length)
-          return;
+        if(currentPage == jsonData.pages.length) {
+          window.location.href = 'summary_score.php?access_id='+accessId;
+        }
         //alert("nextPage"+currentPage+":"+jsonData.pages.length);
         constructView(++currentPage);
       }

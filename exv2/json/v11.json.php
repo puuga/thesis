@@ -26,10 +26,10 @@ $page["question"] = "<img src='pics/ship.jpg' class='img-thumbnail' width='250'>
 
 $content = array();
 $option = array();
-$option[] = "S";
-$option[] = "H";
-$option[] = "I";
 $option[] = "P";
+$option[] = "S";
+$option[] = "I";
+$option[] = "H";
 $hold = array();
 $hold[] = "1";
 $hold[] = "2";
@@ -54,10 +54,10 @@ $page["question"] = "<img src='pics/bike.jpg' class='img-thumbnail' width='250'>
 
 $content = array();
 $option = array();
-$option[] = "B";
-$option[] = "I";
 $option[] = "K";
+$option[] = "B";
 $option[] = "E";
+$option[] = "I";
 $hold = array();
 $hold[] = "1";
 $hold[] = "2";
@@ -83,9 +83,9 @@ $page["question"] = "<img src='pics/taxi.jpg' class='img-thumbnail' width='250'>
 $content = array();
 $option = array();
 $option[] = "T";
+$option[] = "I";
 $option[] = "A";
 $option[] = "X";
-$option[] = "I";
 $hold = array();
 $hold[] = "1";
 $hold[] = "2";
@@ -110,13 +110,13 @@ $page["question"] = "<img src='pics/bicycle.jpg' class='img-thumbnail' width='25
 
 $content = array();
 $option = array();
-$option[] = "B";
 $option[] = "I";
+$option[] = "B";
 $option[] = "C";
 $option[] = "Y";
 $option[] = "C";
-$option[] = "L";
 $option[] = "E";
+$option[] = "L";
 $hold = array();
 $hold[] = "1";
 $hold[] = "2";
@@ -134,6 +134,192 @@ $page["content"] = $content;
 
 $pages[] = $page;
 // end page 4
+
+// start page 5
+$page = array();
+$page["title"] = "Answer the question. ";
+$page["question_id"] = "5";
+$page["question_type"] = "1";
+$page["question"] = "What is the first day of week";
+
+$content = array();
+$option = array();
+$option[] = "Y";
+$option[] = "S";
+$option[] = "A";
+$option[] = "U";
+$option[] = "D";
+$option[] = "N";
+$hold = array();
+$hold[] = "1";
+$hold[] = "2";
+$hold[] = "3";
+$hold[] = "4";
+$hold[] = "5";
+$hold[] = "6";
+
+$content["option"] = $option;
+$content["option_true"] = "SUNDAY";
+$content["hold"] = $hold;
+
+$page["content"] = $content;
+
+$pages[] = $page;
+// end page 5
+
+// start page 6
+$page = array();
+$page["title"] = "Country. ";
+$page["question_id"] = "6";
+$page["question_type"] = "1";
+$page["question"] = "Where are you?";
+
+$content = array();
+$option = array();
+$option[] = "A";
+$option[] = "D";
+$option[] = "N";
+$option[] = "T";
+$option[] = "A";
+$option[] = "H";
+$option[] = "L";
+$option[] = "I";
+$hold = array();
+$hold[] = "1";
+$hold[] = "2";
+$hold[] = "3";
+$hold[] = "4";
+$hold[] = "5";
+$hold[] = "6";
+$hold[] = "7";
+$hold[] = "8";
+
+$content["option"] = $option;
+$content["option_true"] = "THAILAND";
+$content["hold"] = $hold;
+
+$page["content"] = $content;
+
+$pages[] = $page;
+// end page 6
+
+// start page 7
+$page = array();
+$page["title"] = "What is this? ";
+$page["question_id"] = "7";
+$page["question_type"] = "1";
+$page["question"] = "<img src='pics/doctor.png' class='img-thumbnail' width='250'>";
+
+$content = array();
+$option = array();
+$option[] = "T";
+$option[] = "D";
+$option[] = "O";
+$option[] = "O";
+$option[] = "C";
+$option[] = "R";
+$hold = array();
+$hold[] = "1";
+$hold[] = "2";
+$hold[] = "3";
+$hold[] = "4";
+$hold[] = "5";
+$hold[] = "6";
+
+$content["option"] = $option;
+$content["option_true"] = "DOCTOR";
+$content["hold"] = $hold;
+
+$page["content"] = $content;
+
+$pages[] = $page;
+// end page 7
+
+// start page 8
+$page = array();
+$page["title"] = "What is this? ";
+$page["question_id"] = "8";
+$page["question_type"] = "1";
+$page["question"] = "<img src='pics/apple.jpeg' class='img-thumbnail' width='250'>";
+
+$content = array();
+$option = array();
+$option[] = "E";
+$option[] = "L";
+$option[] = "P";
+$option[] = "P";
+$option[] = "A";
+$hold = array();
+$hold[] = "1";
+$hold[] = "2";
+$hold[] = "3";
+$hold[] = "4";
+$hold[] = "5";
+
+$content["option"] = $option;
+$content["option_true"] = "APPLE";
+$content["hold"] = $hold;
+
+$page["content"] = $content;
+
+$pages[] = $page;
+// end page 8
+
+// start page 9
+$page = array();
+$page["title"] = "What is this? ";
+$page["question_id"] = "9";
+$page["question_type"] = "1";
+$page["question"] = "<img src='pics/fish.jpeg' class='img-thumbnail' width='250'>";
+
+$content = array();
+$option = array();
+$option[] = "H";
+$option[] = "I";
+$option[] = "F";
+$option[] = "S";
+$hold = array();
+$hold[] = "1";
+$hold[] = "2";
+$hold[] = "3";
+$hold[] = "4";
+
+$content["option"] = $option;
+$content["option_true"] = "FISH";
+$content["hold"] = $hold;
+
+$page["content"] = $content;
+
+$pages[] = $page;
+// end page 9
+
+// start page 10
+$page = array();
+$page["title"] = "What is this? ";
+$page["question_id"] = "10";
+$page["question_type"] = "1";
+$page["question"] = "<img src='pics/cake.jpg' class='img-thumbnail' width='250'>";
+
+$content = array();
+$option = array();
+$option[] = "E";
+$option[] = "K";
+$option[] = "C";
+$option[] = "A";
+$hold = array();
+$hold[] = "1";
+$hold[] = "2";
+$hold[] = "3";
+$hold[] = "4";
+
+$content["option"] = $option;
+$content["option_true"] = "CAKE";
+$content["hold"] = $hold;
+
+$page["content"] = $content;
+
+$pages[] = $page;
+// end page 10
 
 $result["pages"] = $pages;
 echo json_encode($result);

@@ -88,11 +88,11 @@
         <tbody>
           <?php
           if ( $access_id=="" && ($date=="" || $date=="Today") ) {
-            $sql="SELECT * FROM observe WHERE date(create_at)=CURDATE() ORDER BY action_at,access_id,action_sequence_number";
+            $sql="SELECT * FROM observe WHERE date(create_at)=CURDATE() ORDER BY access_id,action_sequence_number";
           } else if ( $date!="" ) {
-            $sql="SELECT * FROM observe WHERE date(create_at)='$date' ORDER BY action_at,access_id,action_sequence_number";
+            $sql="SELECT * FROM observe WHERE date(create_at)='$date' ORDER BY access_id,action_sequence_number";
           } else {
-            $sql="SELECT * FROM observe WHERE access_id='$access_id' ORDER BY action_at,access_id,action_sequence_number";
+            $sql="SELECT * FROM observe WHERE access_id='$access_id' ORDER BY access_id,action_sequence_number";
           }
           // echo $sql;
           $result = $conn->query($sql);

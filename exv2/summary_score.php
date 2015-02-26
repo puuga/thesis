@@ -26,10 +26,17 @@ function getAnswer($question_id, $results) {
   for ($i=0; $i<count($results); $i++) {
     if ( $question_id == $results[$i]["question_id"] ) {
       if ( $results[$i]["action"]=="on" ) {
-        $output = $output.$results[$i-1]["detail"];
+        // $output = $output.$results[$i-1]["detail"];
+        $index = $results[$i]["detail"]*1;
+        $temp[$index] = $results[$i-1]["detail"];
       }
     }
   }
+  // ksort($temp);
+  for ( $j=1; $j<count($results); $j++ ) {
+    $output = $output.$temp[$j];
+  }
+  // print_r($temp);
   return $output;
 }
 
@@ -51,6 +58,9 @@ function checkAnswer($question_id, $question, $results) {
     <script>
       $(document).ready(function() {
         $.material.init();
+
+        // play sound
+        playSound();
       });
     </script>
 
@@ -121,12 +131,36 @@ function checkAnswer($question_id, $question, $results) {
         ?>
 
         <div class="well well-lg well-material-blue-grey-300">
-          <h2>You got <?php echo $numberOfRightAnswer; ?> of <?php echo count($obj->pages)-1; ?></h2>
+          <h1>You got <?php echo $numberOfRightAnswer; ?> of <?php echo count($obj->pages)-1; ?></h1>
+          <h2>
+          <?php
+          if ( $numberOfRightAnswer/(count($obj->pages)-1) >= 0.8 ) {
+            echo "You are excellent!";
+          } else if ( $numberOfRightAnswer/(count($obj->pages)-1) >= 0.6 ) {
+            echo "You are very good!";
+          } else if ( $numberOfRightAnswer/(count($obj->pages)-1) >= 0.4 ) {
+            echo "You are good!";
+          } else {
+            echo "You have to practice more!";
+          }
+          ?>
+          </h2>
         </div>
 
       </div>
 
     </div>
+
+    <div id="sound"></div>
+    <script>
+      // play sound
+      function playSound() {
+        if ( <?php echo $numberOfRightAnswer/(count($obj->pages)-1); ?>>= 0.8 ) {
+          $("#sound").html('<audio autoplay="autoplay"><source src="sound/Final-Fantasy-VII-Victory-Fanfare.mp3" type="audio/mpeg" /><embed hidden="true" autostart="true" loop="false" src="sound/Final-Fantasy-VII-Victory-Fanfare.mp3" /></audio>');
+        }
+
+      }
+    </script>
 
   </body>
 

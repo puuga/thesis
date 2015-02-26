@@ -172,7 +172,7 @@ $page = array();
 $page["title"] = "Country. ";
 $page["question_id"] = "6";
 $page["question_type"] = "1";
-$page["question"] = "Where are you?";
+$page["question"] = "What country do you live?";
 
 $content = array();
 $option = array();

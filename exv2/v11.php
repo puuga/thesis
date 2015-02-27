@@ -6,6 +6,7 @@
 <html>
   <head>
     <?php include "head_meta.php"; ?>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>v11a</title>
 
     <?php include "head_include.php"; ?>
@@ -143,12 +144,25 @@
         $("#question").html(jsonData.pages[page-1].question);
 
         if ( jsonData.pages[page-1].question_type == "0" ) {
+          $("#title").hide();
+          $("#question").hide();
           makeInput(jsonData.pages[page-1]);
           $("#nev-area").hide();
           $(window).off("resize", moveWhenResize);
         }
         else if ( jsonData.pages[page-1].question_type == "1" ) {
+          $("#title").show();
+          $("#question").show();
           $("#nev-area").show();
+
+          $("#title").css({"position":"absolute"});
+          $("#title").css({"width":"40%"});
+          $("#title").css({"top":"35%"});
+          $("#title").css({"left":"5%"});
+
+          $("#question").css({"position":"absolute"});
+          $("#question").css({"top":"20%"});
+
           makeDrop(jsonData.pages[page-1].content);
           makePep(jsonData.pages[page-1].content);
           $(window).resize( moveWhenResize );
@@ -179,11 +193,13 @@
         documentWidth = $(document).width();
       }
 
+      // reset pep position to init
       function resetPep() {
         var numberOfPep = jsonData.pages[currentPage-1].content.option.length;
         var margin = 100/(numberOfPep+1);
         for (i=0; i<numberOfPep; i++) {
-          $(".pep.qz"+(i+1)).css({"top":$(".droppable.hz"+(i+1)).position().top-120});
+          // $(".pep.qz"+(i+1)).css({"top":$(".droppable.hz"+(i+1)).position().top-120});
+          $(".pep.qz"+(i+1)).css({"top":"5%"});
           $(".pep.qz"+(i+1)).css({"left":(i*margin+10)+"%"});
 
         }
@@ -205,7 +221,7 @@
       function makeInput(content) {
         var output="";
         output += "<div class='form-group input-center1'>"
-        output += "<input type='text' class='form-control input-lg' onkeyup='setStudentName(this)' placeholder='"+content.placeholder+"'>";
+        output += "<input type='text' class='form-control input-lg font-size40' style='height:80px' onkeyup='setStudentName(this)' placeholder='"+content.placeholder+"'>";
         output += "</div>"
         output += "<button onclick='nextPage()' class='btn btn-primary input-center2'>Ready to GO</button>";
         $("#inputZone").html(output);
@@ -235,7 +251,8 @@
           content.option[i]=="U" ) {
             $(".pep.qz"+(i+1)).css({"background":"#4CAF50"});
           }
-          $(".pep.qz"+(i+1)).css({"top":$(".droppable.hz"+(i+1)).position().top-120});
+          // $(".pep.qz"+(i+1)).css({"top":$(".droppable.hz"+(i+1)).position().top-120});
+          $(".pep.qz"+(i+1)).css({"top":"5%"});
           $(".pep.qz"+(i+1)).css({"left":""+(i*margin+10)+"%"});
           $(".pep.qz"+(i+1)).css({"border":"1"});
           $(".pep.qz"+(i+1)).css({"padding":"10px"});

@@ -66,6 +66,38 @@
   left: 25%;
 }
 
+.font-size40 {
+  font-size:40px;
+}
+
+.image-control {
+  width:250px;
+  height:auto;
+}
+
+@media all and (max-width: 1200px) {
+  .image-control {
+    width:250px;
+    height:auto;
+  }
+}
+
+/* tablet */
+@media all and (max-width: 1024px) {
+  .image-control {
+    width:200px;
+    height:180px;
+  }
+}
+
+/* mobile phone */
+@media all and (max-width: 768px) {
+  .image-control {
+    width:150px;
+    height:150px;
+  }
+}
+
 #nev-area {
   width: 50%;
   position: absolute;

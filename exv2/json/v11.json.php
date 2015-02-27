@@ -22,7 +22,7 @@ $page = array();
 $page["title"] = "What is this? ";
 $page["question_id"] = "1";
 $page["question_type"] = "1";
-$page["question"] = "<img src='pics/ship.jpg' class='img-thumbnail' width='250'>";
+$page["question"] = "<img src='pics/ship.jpg' class='img-thumbnail image-control'>";
 
 $content = array();
 $option = array();
@@ -50,7 +50,7 @@ $page = array();
 $page["title"] = "What is this? ";
 $page["question_id"] = "2";
 $page["question_type"] = "1";
-$page["question"] = "<img src='pics/bike.jpg' class='img-thumbnail' width='250'>";
+$page["question"] = "<img src='pics/bike.jpg' class='img-thumbnail image-control'>";
 
 $content = array();
 $option = array();
@@ -78,7 +78,7 @@ $page = array();
 $page["title"] = "What is this? ";
 $page["question_id"] = "3";
 $page["question_type"] = "1";
-$page["question"] = "<img src='pics/taxi.jpg' class='img-thumbnail' width='250'>";
+$page["question"] = "<img src='pics/taxi.jpg' class='img-thumbnail image-control'>";
 
 $content = array();
 $option = array();
@@ -106,7 +106,7 @@ $page = array();
 $page["title"] = "What is this? ";
 $page["question_id"] = "4";
 $page["question_type"] = "1";
-$page["question"] = "<img src='pics/bicycle.jpg' class='img-thumbnail' width='250'>";
+$page["question"] = "<img src='pics/bicycle.jpg' class='img-thumbnail image-control'>";
 
 $content = array();
 $option = array();
@@ -137,10 +137,10 @@ $pages[] = $page;
 
 // start page 5
 $page = array();
-$page["title"] = "Answer the question. ";
+$page["title"] = "Answer the question.<br>What is the first day of week ";
 $page["question_id"] = "5";
 $page["question_type"] = "1";
-$page["question"] = "What is the first day of week";
+$page["question"] = "";
 
 $content = array();
 $option = array();
@@ -169,10 +169,10 @@ $pages[] = $page;
 
 // start page 6
 $page = array();
-$page["title"] = "Country. ";
+$page["title"] = "Country.<br>What country do you live? ";
 $page["question_id"] = "6";
 $page["question_type"] = "1";
-$page["question"] = "What country do you live?";
+$page["question"] = "";
 
 $content = array();
 $option = array();
@@ -208,7 +208,7 @@ $page = array();
 $page["title"] = "What is this? ";
 $page["question_id"] = "7";
 $page["question_type"] = "1";
-$page["question"] = "<img src='pics/doctor.png' class='img-thumbnail' width='250'>";
+$page["question"] = "<img src='pics/doctor.png' class='img-thumbnail image-control'>";
 
 $content = array();
 $option = array();
@@ -240,7 +240,7 @@ $page = array();
 $page["title"] = "What is this? ";
 $page["question_id"] = "8";
 $page["question_type"] = "1";
-$page["question"] = "<img src='pics/apple.jpeg' class='img-thumbnail' width='250'>";
+$page["question"] = "<img src='pics/apple.jpeg' class='img-thumbnail image-control'>";
 
 $content = array();
 $option = array();
@@ -270,7 +270,7 @@ $page = array();
 $page["title"] = "What is this? ";
 $page["question_id"] = "9";
 $page["question_type"] = "1";
-$page["question"] = "<img src='pics/fish.jpeg' class='img-thumbnail' width='250'>";
+$page["question"] = "<img src='pics/fish.jpeg' class='img-thumbnail image-control'>";
 
 $content = array();
 $option = array();
@@ -298,7 +298,7 @@ $page = array();
 $page["title"] = "What is this? ";
 $page["question_id"] = "10";
 $page["question_type"] = "1";
-$page["question"] = "<img src='pics/cake.jpg' class='img-thumbnail' width='250'>";
+$page["question"] = "<img src='pics/cake.jpg' class='img-thumbnail image-control'>";
 
 $content = array();
 $option = array();

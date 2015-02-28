@@ -137,7 +137,7 @@ $pages[] = $page;
 
 // start page 5
 $page = array();
-$page["title"] = "Answer the question.<br>What is the first day of week ";
+$page["title"] = "Answer the question.<br>What is the first day of week? ";
 $page["question_id"] = "5";
 $page["question_type"] = "1";
 $page["question"] = "";

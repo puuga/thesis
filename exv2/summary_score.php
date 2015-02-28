@@ -4,6 +4,8 @@
 ?>
 <?php
 $access_id = $_GET["access_id"];
+
+// get result
 $sql="SELECT * FROM observe WHERE access_id='$access_id' ORDER BY action_sequence_number";
 $result = $conn->query($sql);
 $raw_results = Array();
@@ -18,6 +20,20 @@ if ($result->num_rows > 0) {
     $raw_result["detail"] = $row["detail"];
     $raw_result["action_at"] = $row["action_at"];
     $raw_results[] = $raw_result;
+  }
+}
+
+// get amount of activity
+$sql="SELECT * FROM observe WHERE `access_id` LIKE '$access_id' and `action`='activity'  ORDER BY action_sequence_number";
+$result = $conn->query($sql);
+$raw_activity_results = Array();
+if ($result->num_rows > 0) {
+  // output data of each row
+  while($row = $result->fetch_assoc()) {
+    $raw_activity_result["access_id"] = $row["access_id"];
+    $raw_activity_result["question_id"] = $row["question_id"];
+    $raw_activity_result["action"] = $row["action"];
+    $raw_activity_results[] = $raw_activity_result;
   }
 }
 
@@ -40,9 +56,23 @@ function getAnswer($question_id, $results) {
   return $output;
 }
 
-function checkAnswer($question_id, $question, $results) {
-  if ( $question->pages[$question_id]->content->option_true == getAnswer($question_id,$results) ) {
-    return true;
+function getTrueAnswer($question_id, $question) {
+  for ($i=0; $i<count($question->pages); $i++) {
+    if ( $question->pages[$i]->question_id == $question_id ) {
+      return $question->pages[$i]->content->option_true;
+    }
+  }
+  return "";
+}
+
+function checkAnswer($j,$question_id, $question, $results) {
+  for ( $k=0; $k<count($question->pages); $k++ ) {
+    if ( $question->pages[$k]->question_id == $question_id ) {
+      if ( getTrueAnswer($question_id, $question) == getAnswer($question_id,$results) ) {
+        return true;
+      }
+      return false;
+    }
   }
   return false;
 }
@@ -84,19 +114,24 @@ function checkAnswer($question_id, $question, $results) {
         <?php
         $ch = curl_init();
         //curl_setopt($ch, CURLOPT_URL, "http://localhost/thesis/exv2/json/v11.json.php");
-        curl_setopt($ch, CURLOPT_URL, "http://128.199.208.34/thesis/exv2/json/v11.json.php");
+        curl_setopt($ch, CURLOPT_URL, "http://128.199.208.34/thesis/exv2/json/v12.json.php?limit==all");
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $json = curl_exec($ch);
         curl_close($ch);
 
         $obj = json_decode($json);
-        //print_r($obj);
-        //print_r($raw_results);
+
+        // print_r($obj);
+        // echo "<hr>";
+        // print_r($raw_results);
+        // echo "<hr>";
+        // print_r($raw_activity_results);
+        // echo "<hr>";
 
         $numberOfRightAnswer = 0;
 
-        for ($i=1; $i<count($obj->pages); $i++) {
-          $isRightAnswer = checkAnswer($i,$obj,$raw_results);
+        for ($i=1; $i<count($raw_activity_results)+1; $i++) {
+          $isRightAnswer = checkAnswer($i,$raw_activity_results[$i-1]["question_id"],$obj,$raw_results);
           if ( $isRightAnswer ) {
             $numberOfRightAnswer++;
           }
@@ -116,12 +151,12 @@ function checkAnswer($question_id, $question, $results) {
                 ?>
               </div>
               <div class="col-md-4">
-                Right answer is <?php echo $obj->pages[$i]->content->option_true; ?>
+                Right answer is <?php echo getTrueAnswer($raw_activity_results[$i-1]["question_id"], $obj); ?>
               </div>
             </div>
             <div class="row">
               <div class="col-md-4 col-md-offset-2">
-                Your answer is <?php echo getAnswer($i,$raw_results); ?>
+                Your answer is <?php echo getAnswer($raw_activity_results[$i-1]["question_id"],$raw_results); ?>
               </div>
             </div>
           </div>
@@ -131,14 +166,14 @@ function checkAnswer($question_id, $question, $results) {
         ?>
 
         <div class="well well-lg well-material-blue-grey-300">
-          <h1>You got <?php echo $numberOfRightAnswer; ?> of <?php echo count($obj->pages)-1; ?></h1>
+          <h1>You got <?php echo $numberOfRightAnswer; ?> of <?php echo count($raw_activity_results); ?></h1>
           <h2>
           <?php
-          if ( $numberOfRightAnswer/(count($obj->pages)-1) >= 0.8 ) {
+          if ( $numberOfRightAnswer/(count($raw_activity_results)) >= 0.8 ) {
             echo "You are excellent!";
-          } else if ( $numberOfRightAnswer/(count($obj->pages)-1) >= 0.6 ) {
+          } else if ( $numberOfRightAnswer/(count($raw_activity_results)) >= 0.6 ) {
             echo "You are very good!";
-          } else if ( $numberOfRightAnswer/(count($obj->pages)-1) >= 0.4 ) {
+          } else if ( $numberOfRightAnswer/(count($raw_activity_results)) >= 0.4 ) {
             echo "You are good!";
           } else {
             echo "You have to practice more!";

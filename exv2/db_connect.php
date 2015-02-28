@@ -2,7 +2,7 @@
 <?php
   // Create connection
   //$con = mysqli_connect("localhost","rls2014ss","rls2014ss","roomlinkDB");
-  $con=mysqli_connect("localhost","thesis","12345678901","thesis_v1");
+  $con=mysqli_connect("localhost","thesis","12345678901","thesis_v2");
 
   mysqli_set_charset($con , "UTF8");
 

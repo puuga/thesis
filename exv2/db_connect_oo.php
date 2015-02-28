@@ -2,7 +2,7 @@
 <?php
   // Create connection
   //$con=mysqli_connect("localhost","thesis","12345678901","thesis_v1");
-  $conn = new mysqli("localhost", "thesis", "12345678901", "thesis_v1");
+  $conn = new mysqli("localhost", "thesis", "12345678901", "thesis_v2");
 
   // Check connection
   if ($conn->connect_error) {

@@ -114,7 +114,7 @@ function checkAnswer($j,$question_id, $question, $results) {
         <?php
         $ch = curl_init();
         //curl_setopt($ch, CURLOPT_URL, "http://localhost/thesis/exv2/json/v11.json.php");
-        curl_setopt($ch, CURLOPT_URL, "http://128.199.208.34/thesis/exv2/json/v12.json.php?limit==all");
+        curl_setopt($ch, CURLOPT_URL, "http://128.199.208.34/thesis/exv2/json/v12.json.php?limit=all");
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $json = curl_exec($ch);
         curl_close($ch);
@@ -197,6 +197,8 @@ function checkAnswer($j,$question_id, $question, $results) {
       }
     </script>
 
+
+    <?php include_once("analyticstracking.php") ?>
   </body>
 
 </html>

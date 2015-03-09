@@ -72,20 +72,20 @@
 
 .image-control {
   width:250px;
-  height:auto;
+  height:250px;
 }
 
 @media all and (max-width: 1200px) {
   .image-control {
     width:250px;
-    height:auto;
+    height:250px;
   }
 }
 
 /* tablet */
 @media all and (max-width: 1024px) {
   .image-control {
-    width:200px;
+    width:180px;
     height:180px;
   }
 }
@@ -93,8 +93,8 @@
 /* mobile phone */
 @media all and (max-width: 768px) {
   .image-control {
-    width:150px;
-    height:150px;
+    width:140px;
+    height:140px;
   }
 }
 

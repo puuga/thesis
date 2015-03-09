@@ -14,6 +14,7 @@
     <!-- Load lib and tests. -->
     <?php include "head_pep.php"; ?>
 
+    <script src="script/extend.array.js"></script>
     <script type="text/javascript">
       var currentPage = 1;
       var jsonData;
@@ -22,6 +23,9 @@
       var accessId = (new Date()).valueOf().toString();
       var documentHeight = 0;
       var documentWidth = 0;
+      var currentOptionTrueArr;
+      var currentHold;
+      var currentFocusPep;
 
       $(document).ready(function() {
 
@@ -106,6 +110,7 @@
           console.log("on "+ $parent.context.innerHTML);
           // track
           track("on",$parent.context.innerHTML);
+          updateHold("on", $parent.context.innerHTML)
 
           if ( !obj.shouldUseCSSTranslation() ) {
             var moveTop = cTop - (oHeight/2);
@@ -154,6 +159,9 @@
         else if ( jsonData.pages[page-1].question_type == "1" ) {
           // track
           track("activity",jsonData.pages[page-1].question_id);
+
+          currentOptionTrueArr = jsonData.pages[page-1].content.option_true_arr;
+          currentHold = [];
 
           $("#title").show();
           $("#question").show();
@@ -208,6 +216,7 @@
 
         }
         track("reset","pep");
+        currentHold = [];
       }
 
       function clearView() {
@@ -314,6 +323,9 @@
       function logOnMouseDown(obj) {
         console.log("choose "+ obj.innerHTML);
 
+        currentFocusPep = obj.innerHTML;
+        updateHold("choose",obj.innerHTML);
+
         // track
         track("choose",obj.innerHTML);
       }
@@ -339,11 +351,29 @@
             action_sequence_number: sequenceNumber++ }
         })
           .done(function( msg ) {
-            console.log( "Data Saved: " + msg );
+            console.log( "Data Saved: " + msg.toString() );
           })
           .fail(function( msg ) {
-            console.log( "error: " + msg );
+            console.log( "error: " + msg.toString() );
           });
+      }
+
+      function updateHold(action, detail) {
+        if ( action=="on" ) {
+          mDetail = parseInt(detail);
+          currentHold[mDetail-1] = currentFocusPep;
+        } else if ( action=="choose" ){
+          var index=currentHold.indexOf(detail);
+          if ( index!=-1 ) {
+            currentHold[index] = "";
+          }
+        }
+        console.log("currentHold:"+currentHold.toString());
+        console.log("currentOptionTrueArr:"+currentOptionTrueArr.toString());
+        if ( currentHold.equals(currentOptionTrueArr) ) {
+          console.log("true");
+          $('#simple-dialog').modal('show');
+        }
       }
 
       function hashCode(str) {
@@ -396,7 +426,17 @@
 
     </script>
 
+    <div id="simple-dialog" class="modal fade" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h1>Excellent</h1>
+          </div>
+        </div>
+      </div>
+    </div>
 
+    <?php include_once("analyticstracking.php") ?>
   </body>
 
 

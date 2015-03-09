@@ -130,6 +130,7 @@
       <a href="observe_view.php" class="btn btn-fab btn-raised btn-material-red mdi-av-replay"></a>
     </div>
 
+    <?php include_once("analyticstracking.php") ?>
   </body>
 
 </html>

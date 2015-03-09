@@ -34,6 +34,7 @@ function createPageType1($i, $raw_results) {
   $hold = array();
   for ( $j=0; $j<strlen($raw_results[$i]["option_true"]);$j++ ) {
     $hold[] = ($j+1);
+    $content["option_true_arr"][]=$raw_results[$i]["option_true"][$j];
   }
   $content["option"] = $option;
   $content["option_true"] = $raw_results[$i]["option_true"];
@@ -81,33 +82,45 @@ if ($result->num_rows > 0) {
     $raw_results[] = $raw_result;
   }
 }
+//$result_final["raw_results"]=$raw_results;
 
 // filter activity by limit
-// create random number
-$random = Array();
-if ( count($raw_results)<=10 ) {
+if ( $limit=="all" ) {
+  // create page
+  // add page to pages
   for ( $i=0; $i<count($raw_results); $i++) {
-    $random[] = $i;
+    $page = createPage($i, $raw_results);
+    $pages[] = $page;
   }
 } else {
-  for ( $i=0; $i<10; $i++) {
-    if ( count($random)==0 ) {
-      $random[] = rand(0,count($raw_results)-1);
-    } else {
-      do {
-        $ran = rand(0,count($raw_results)-1);
-      } while ( !in_array($ran, $random) );
-      $random[] = $ran;
+  // create random number
+  $random = Array();
+  if ( count($raw_results)<=10 ) {
+    for ( $i=0; $i<count($raw_results); $i++) {
+      $random[] = $i;
     }
+  } else {
+    for ( $i=0; $i<10; $i++) {
+      if ( count($random)==0 ) {
+        $random[] = rand(0,count($raw_results)-1);
+      } else {
+        do {
+          $ran = rand(0,count($raw_results)-1);
+        } while ( in_array($ran, $random) );
+        $random[] = $ran;
+      }
+    }
+  }
+  //$result_final["random"]=$random;
+
+  // create page
+  // add page to pages
+  for ( $i=0; $i<count($random); $i++) {
+    $page = createPage($random[$i], $raw_results);
+    $pages[] = $page;
   }
 }
 
-// create page
-// add page to pages
-for ( $i=0; $i<count($random); $i++) {
-  $page = createPage($random[$i], $raw_results);
-  $pages[] = $page;
-}
 
 
 $result_final["pages"] = $pages;

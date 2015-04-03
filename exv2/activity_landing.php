@@ -31,7 +31,7 @@
         while($row = $result->fetch_assoc()) {
           ?>
           <p>
-            <a href="v12.php?tag=<?php echo $row["name"];?>" class="btn btn-info btn-lg">
+            <a href="v13.php?tag=<?php echo $row["name"];?>" class="btn btn-info btn-lg">
               <?php echo $row["name"];?> (<?php echo $row["number"];?>)
             </a>
           </p>
